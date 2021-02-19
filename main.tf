@@ -70,9 +70,9 @@ resource "azurerm_kubernetes_cluster" "swp" {
     client_secret = var.client_secret
   }
 
-  identity {
-    type = "SystemAssigned"
-  }
+  # identity {
+  #   type = "SystemAssigned"
+  # }
 
   tags = {
     Environment = "Stage"
