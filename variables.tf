@@ -3,11 +3,15 @@ variable "subscription_id" {
 }
 
 variable "client_id" {
+  description = "(Optional) The Client ID (appId) for the Service Principal used for the AKS deployment"
   type        = string
+  default     = ""
 }
 
 variable "client_secret" {
+  description = "(Optional) The Client Secret (password) for the Service Principal used for the AKS deployment"
   type        = string
+  default     = ""
 }
 
 variable "tenant_id" {
@@ -22,18 +26,6 @@ variable "resource_group_name" {
 variable "prefix" {
   description = "The prefix for the resources created in the specified Azure Resource Group"
   type        = string
-}
-
-variable "client_id" {
-  description = "(Optional) The Client ID (appId) for the Service Principal used for the AKS deployment"
-  type        = string
-  default     = ""
-}
-
-variable "client_secret" {
-  description = "(Optional) The Client Secret (password) for the Service Principal used for the AKS deployment"
-  type        = string
-  default     = ""
 }
 
 variable "admin_username" {
