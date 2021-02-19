@@ -65,6 +65,11 @@ resource "azurerm_kubernetes_cluster" "swp" {
     vnet_subnet_id = azurerm_subnet.swp.id
   }
 
+  service_principal {
+    client_id     = var.client_id
+    client_secret = var.client_secret
+  }
+
   identity {
     type = "SystemAssigned"
   }
