@@ -28,7 +28,7 @@ provider "tls" {
 }
 
 resource "azurerm_resource_group" "swp" {
-  name     = "swp-${var.prefix}-aks"
+  name     = "${var.prefix}-aks"
   location = "eastus"
 }
 
@@ -80,7 +80,7 @@ resource "azurerm_kubernetes_cluster" "swp" {
 }
 
 resource "azurerm_public_ip" "swp" {
-  name                = "swp-${var.prefix}-public-ip"
+  name                = "${var.prefix}-public-ip"
   resource_group_name = azurerm_kubernetes_cluster.swp.node_resource_group
   location            = azurerm_kubernetes_cluster.swp.location
   allocation_method   = "Static"
