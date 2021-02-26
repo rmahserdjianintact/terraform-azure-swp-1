@@ -91,8 +91,13 @@ resource "azurerm_public_ip" "swp" {
   }
 }
 
+data "azurerm_public_ip" "swp" {
+  name                = "${var.prefix}-public-ip"
+  resource_group_name = azurerm_kubernetes_cluster.swp.node_resource_group
+}
+
 output "public_ip_address" {
-  value = swp.azurerm_public_ip.ip.ip_address
+  value = data.azurerm_public_ip.swp.ip_address
 }
 
 
