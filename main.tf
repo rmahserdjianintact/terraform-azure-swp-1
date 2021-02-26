@@ -19,16 +19,16 @@ provider "azurerm" {
   # http://terraform.io/docs/providers/azurerm/index.html
 
   subscription_id = var.subscription_id
+  tenant_id       = var.tenant_id
   client_id       = var.client_id
   client_secret   = var.client_secret
-  tenant_id       = var.tenant_id
 
 }
 provider "tls" {
 }
 
 resource "azurerm_resource_group" "swp" {
-  name     = "swp-dev-stage"
+  name     = "${var.prefix}-aks"
   location = "eastus"
 }
 
@@ -80,7 +80,7 @@ resource "azurerm_kubernetes_cluster" "swp" {
 }
 
 resource "azurerm_public_ip" "swp" {
-  name                = "swp-dev-stage-public-ip"
+  name                = "${var.prefix}-public-ip"
   resource_group_name = azurerm_kubernetes_cluster.swp.node_resource_group
   location            = azurerm_kubernetes_cluster.swp.location
   allocation_method   = "Static"
@@ -90,4 +90,14 @@ resource "azurerm_public_ip" "swp" {
     environment = "Production"
   }
 }
+
+data "azurerm_public_ip" "swp" {
+  name                = "${var.prefix}-public-ip"
+  resource_group_name = azurerm_kubernetes_cluster.swp.node_resource_group
+}
+
+output "public_ip_address" {
+  value = data.azurerm_public_ip.swp.ip_address
+}
+
 

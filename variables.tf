@@ -18,11 +18,6 @@ variable "tenant_id" {
   type        = string
 }
 
-variable "resource_group_name" {
-  description = "The resource group name to be imported"
-  type        = string
-}
-
 variable "prefix" {
   description = "The prefix for the resources created in the specified Azure Resource Group"
   type        = string
