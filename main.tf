@@ -91,3 +91,8 @@ resource "azurerm_public_ip" "swp" {
   }
 }
 
+output "public_ip_address" {
+  value = swp.azurerm_public_ip.ip.ip_address
+}
+
+
